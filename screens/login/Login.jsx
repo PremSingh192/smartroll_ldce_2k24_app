@@ -6,6 +6,7 @@ import styles from '../../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import base_url from '../../utils/Baseurl';
 import axios from 'axios';
+import DeviceInfo from 'react-native-device-info';
 
 import {View, StyleSheet, Alert, Platform} from 'react-native';
 import {
@@ -18,6 +19,12 @@ import {
 } from '@rneui/themed';
 
 export default function Login({navigation}) {
+  DeviceInfo.getUniqueId().then((uniqueId) => {
+    // iOS: "FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9"
+    // Android: "dd96dec43fb81c97"
+    // Windows: "{2cf7cb3c-da7a-d508-0d7f-696bb51185b4}"
+    console.log(uniqueId)
+  });
   // if (isAuthenticated()){
   //   navigation.replace('home')
   // }

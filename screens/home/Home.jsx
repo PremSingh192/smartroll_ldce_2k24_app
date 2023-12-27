@@ -19,6 +19,7 @@ useEffect(()=>{
     });
   })
   .catch(err => {
+    console.log(err)
     Alert.alert('err', `${err}`);
   });
 
