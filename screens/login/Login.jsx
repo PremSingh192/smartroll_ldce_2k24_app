@@ -1,6 +1,8 @@
 // Import necessary components and libraries
 import React, {useState, useEffect} from 'react';
-import isAuthenticated from '../../utils/isAuthenticated';
+import {useDispatch, useSelector} from 'react-redux';
+import {addtoken} from '../../redux/action';
+import {login}   from "../../redux/reducer"
 // import { AsyncStorage } from 'react-native';
 import styles from '../../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,15 +21,19 @@ import {
 } from '@rneui/themed';
 
 export default function Login({navigation}) {
-  DeviceInfo.getUniqueId().then((uniqueId) => {
+  DeviceInfo.getUniqueId().then(uniqueId => {
     // iOS: "FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9"
     // Android: "dd96dec43fb81c97"
     // Windows: "{2cf7cb3c-da7a-d508-0d7f-696bb51185b4}"
-    console.log(uniqueId)
+    console.log(uniqueId);
   });
-  // if (isAuthenticated()){
-  //   navigation.replace('home')
-  // }
+
+  const dispatch = useDispatch();
+ 
+  // sample test redux
+
+  
+
   const [useremail, setUseremail] = useState(() => {
     return '';
   });
@@ -50,25 +56,27 @@ export default function Login({navigation}) {
           'Content-Type': 'application/json',
         },
       };
-      axios.post(`${base_url}/auth/api/login/`, body, axiosconfig)
-      .then(response => {
-        let data = response.data;
-        console.log(`from login access_token: ${data.access}\nrefresh_token: ${data.refresh}`);
-    
-        AsyncStorage.setItem('access_token', data.access).then(() => {
-          AsyncStorage.setItem('refresh_token', data.refresh).then(() => {
-            navigation.replace('home');
+      axios
+        .post(`${base_url}/auth/api/login/`, body, axiosconfig)
+        .then(response => {
+          let data = response.data;
+          console.log(
+            `from login access_token: ${data.access}\nrefresh_token: ${data.refresh}`,
+          );
+               
+          AsyncStorage.setItem('access_token', data.access).then(() => {
+            AsyncStorage.setItem('refresh_token', data.refresh).then(() => {
+              dispatch(login())
+              navigation.replace('home');
+            });
           });
+        })
+        .catch(error => {
+          console.error('Login request failed:', error);
+          // Handle the error, e.g., show an error message to the user
         });
-      })
-      .catch(error => {
-        console.error('Login request failed:', error);
-        // Handle the error, e.g., show an error message to the user
-      });
-    
-        
-    
-     
+
+      
     }
   };
 
