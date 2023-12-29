@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addtoken} from '../../redux/action';
 import {login}   from "../../redux/reducer"
+import useAsyncStorage from '../../hooks/useAsyncStorage';
 // import { AsyncStorage } from 'react-native';
 import styles from '../../styles/styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -60,16 +61,13 @@ export default function Login({navigation}) {
         .post(`${base_url}/auth/api/login/`, body, axiosconfig)
         .then(response => {
           let data = response.data;
-          console.log(
-            `from login access_token: ${data.access}\nrefresh_token: ${data.refresh}`,
-          );
-               
-          AsyncStorage.setItem('access_token', data.access).then(() => {
-            AsyncStorage.setItem('refresh_token', data.refresh).then(() => {
-              dispatch(login())
-              navigation.replace('home');
-            });
-          });
+            if(data.access && data.refresh){     
+              console.log(data);
+              useAsyncStorage('set','tokens',data).then(() => {
+                dispatch(login())
+                navigation.replace('home');
+              })
+            }
         })
         .catch(error => {
           console.error('Login request failed:', error);
