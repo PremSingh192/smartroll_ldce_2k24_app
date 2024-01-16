@@ -12,7 +12,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from './screens/login/Login';
 import {SafeAreaView} from 'react-native';
-import home from './screens/home/Home';
+import Home from './screens/home/Home';
 const Stack = createStackNavigator();
 
 // const theme = createTheme({
@@ -27,7 +27,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="login">
           <Stack.Screen   options={{ headerShown: false }} name="login" component={Login} />
-          <Stack.Screen name="home" component={home} />
+          <Stack.Screen name="home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

@@ -1,20 +1,15 @@
-
-
 import {StyleSheet} from 'react-native';
-import {Platform,useColorScheme} from 'react-native';
+import {Platform, useColorScheme} from 'react-native';
 //import { Appearance, useColorScheme } from 'react-native-appearance';
 
-import React from 'react'
+import React from 'react';
 
 const clicked = true;
 export default function Styles() {
+  const mode = useColorScheme() === 'dark';
 
-const   mode = useColorScheme() === 'dark';
-
-   return mode
-  
+  return mode;
 }
-
 
 export const mystyles = StyleSheet.create({
   font_global: {
@@ -24,7 +19,7 @@ export const mystyles = StyleSheet.create({
     flex: 1,
 
     // backgroundColor: '#FFFFFF',
-     backgroundColor:"white",
+    backgroundColor: 'white',
     fontFamily: 'Poppins-Regular',
   },
   top_container: {
@@ -35,7 +30,7 @@ export const mystyles = StyleSheet.create({
   },
   top_container_box1: {
     flex: 1,
-    marginTop:"10%",
+    marginTop: '10%',
     //  width:"auto",
     //  height:"auto",
     flexDirection: 'row',
@@ -46,12 +41,12 @@ export const mystyles = StyleSheet.create({
   text_top1: {
     paddingRight: '5%',
     fontSize: 26,
-//backgroundColor:'grey',
+    //backgroundColor:'grey',
     color: clicked ? '#FFA31A' : '#858585',
   },
   text_top2: {
     fontSize: 26,
-   // backgroundColor:'blue',
+    // backgroundColor:'blue',
     color: '#858585',
   },
   top_container_box2: {
@@ -167,7 +162,3 @@ export const mystyles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-
-
-
