@@ -49,44 +49,44 @@ export default function Login({navigation}) {
 
   
 
-  const [useremail, setUseremail] = useState(() =>"");
-  const [password, setPassword] = useState(() =>"");
+  // const [useremail, setUseremail] = useState(() =>"");
+  // const [password, setPassword] = useState(() =>"");
 
-  const handleLogin = () => {
-    if (useremail == "" || password == "") {
-      Alert.alert('Alert', 'Enter username and password ');
-    } else {
-      console.log(`username ${useremail} and pasword ${password}`);
+  // const handleLogin = () => {
+  //   if (useremail == "" || password == "") {
+  //     Alert.alert('Alert', 'Enter username and password ');
+  //   } else {
+  //     console.log(`username ${useremail} and pasword ${password}`);
 
-      const body = {
-        email: useremail,
-        password: password,
-      };
-      const axiosconfig = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      axios
-        .post(`${base_url}/auth/api/login/`, body, axiosconfig)
-        .then(response => {
-          let data = response.data;
-            if(data.access && data.refresh){     
-              console.log(data);
-              useAsyncStorage('set','tokens',data).then(() => {
-                dispatch(login())
-                navigation.replace('home');
-              })
-            }
-        })
-        .catch(error => {
-          console.error('Login request failed:', error);
-          // Handle the error, e.g., show an error message to the user
-        });
+  //     const body = {
+  //       email: useremail,
+  //       password: password,
+  //     };
+  //     const axiosconfig = {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     };
+  //     axios
+  //       .post(`${base_url}/auth/api/login/`, body, axiosconfig)
+  //       .then(response => {
+  //         let data = response.data;
+  //           if(data.access && data.refresh){     
+  //             console.log(data);
+  //             useAsyncStorage('set','tokens',data).then(() => {
+  //               dispatch(login())
+  //               navigation.replace('home');
+  //             })
+  //           }
+  //       })
+  //       .catch(error => {
+  //         console.error('Login request failed:', error);
+  //         // Handle the error, e.g., show an error message to the user
+  //       });
 
       
-    }
-  };
+  //   }
+  // };
   const mode = Styles();
 
   return (
