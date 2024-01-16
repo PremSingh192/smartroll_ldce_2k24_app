@@ -10,23 +10,23 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import login from './screens/login/Login';
+import Login from './screens/login/Login';
 import {SafeAreaView} from 'react-native';
 import home from './screens/home/Home';
 const Stack = createStackNavigator();
 
-const theme = createTheme({
-  lightColors: {
-    primary: 'grey3',
-  },
-});
+// const theme = createTheme({
+//   lightColors: {
+//     primary: 'grey3',
+//   },
+// });
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider >
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="home">
-          <Stack.Screen name="login" component={login} />
+        <Stack.Navigator initialRouteName="login">
+          <Stack.Screen   options={{ headerShown: false }} name="login" component={Login} />
           <Stack.Screen name="home" component={home} />
         </Stack.Navigator>
       </NavigationContainer>
