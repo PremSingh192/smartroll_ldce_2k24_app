@@ -20,9 +20,10 @@ const theme = createTheme({
     primary: 'grey3',
   },
 });
+import { NativeBaseProvider, Text, Box } from "native-base";
 
 export default function App() {
-  return (
+  return (    
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="home">
@@ -30,6 +31,6 @@ export default function App() {
           <Stack.Screen name="home" component={home} />
         </Stack.Navigator>
       </NavigationContainer>
-    </ThemeProvider>
+    </ThemeProvider>    
   );
 }

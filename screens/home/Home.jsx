@@ -6,7 +6,7 @@ import React, {useState, useEffect} from 'react';
 import useAsyncStorage from '../../hooks/useAsyncStorage';
 import axios from 'axios';
 import useAPI from '../../hooks/useAPI';
-import { ToastAndroid } from 'react-native';
+import CardScreen from '../CardScreen';
 
 const Home = ({navigation}) => {  
   const check = useSelector(state => state.isLoggedIn);  
@@ -22,7 +22,7 @@ const Home = ({navigation}) => {
     <View>
       <Text style={styles.subHeader}>
         gobal state token {check.toString()}
-      </Text>
+      </Text>          
     </View>
   );
 };
