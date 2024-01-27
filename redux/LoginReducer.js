@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const checklogin = createSlice({
     name:'isLoggedIn',
-    initialState: false,
+    initialState: {token:null},
     reducers: {
-       login: () => true ,
-       logout: () => false ,
+    login: (state, action) => ({token:action.payload}),
+       logout: () => ({ token: null }) ,
     },
 
 });

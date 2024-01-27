@@ -23,14 +23,12 @@ const theme = createTheme({
 import { NativeBaseProvider, Text, Box } from "native-base";
 
 export default function App() {
-  return (    
-    <ThemeProvider theme={theme}>
+  return (        
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="home">
+        <Stack.Navigator initialRouteName="login">
           <Stack.Screen name="login" component={login} />
           <Stack.Screen name="home" component={home} />
         </Stack.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>    
-  );
+      </NavigationContainer>    
+  )
 }
