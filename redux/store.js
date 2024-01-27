@@ -3,7 +3,7 @@
 import { configureStore,combineReducers,getDefaultMiddleware } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import { checkforlogin } from './reducer';
+import { checkforlogin } from './LoginReducer';
 
 const persistConfig = {
     key:'root',

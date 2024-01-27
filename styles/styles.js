@@ -4,29 +4,25 @@ import {Platform, useColorScheme} from 'react-native';
 
 import React from 'react';
 
-const clicked = true;
-export default function Styles() {
-  const mode = useColorScheme() === 'dark';
 
-  return mode;
-}
 
-export const mystyles = StyleSheet.create({
+ const styles = StyleSheet.create({
   font_global: {
     fontFamily: 'Poppins-Regular',
   },
   wrapper: {
     flex: 1,
 
-    // backgroundColor: '#FFFFFF',
-    backgroundColor: 'white',
-    fontFamily: 'Poppins-Regular',
+    //backgroundColor: '#FFFFFF',
+     backgroundColor: 'black',
   },
   top_container: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
-
-    // backgroundColor: 'orange',
+    
+    marginTop: 0,
+    height: 400,
   },
   top_container_box1: {
     flex: 1,
@@ -40,17 +36,15 @@ export const mystyles = StyleSheet.create({
   },
   text_top1: {
     paddingRight: '5%',
-    fontSize: 26,
+    fontSize: 21,
     //backgroundColor:'grey',
-    color: clicked ? '#FFA31A' : '#858585',
   },
   text_top2: {
-    fontSize: 26,
+    fontSize: 21,
     // backgroundColor:'blue',
-    color: '#858585',
   },
   top_container_box2: {
-    flex: 4,
+    flex: 1,
 
     //  width:"auto",
     //  height:"auto",
@@ -60,48 +54,46 @@ export const mystyles = StyleSheet.create({
     //  backgroundColor: 'pink',
   },
   top_image_container: {
-    flex: 1,
-
     // paddingHorizontal: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-
+    // alignItems: 'center',
+    // justifyContent: 'center',
     // backgroundColor: 'grey',
   },
   image: {
-    width: '60%',
-    height: 260,
-    //backgroundColor: 'pink',
-    resizeMode: 'cover',
+    width: 300,
+    height: 300,
+   
+    resizeMode: 'center',
   },
 
   bottom_container: {
-    flex: 2,
+     flex: 1,
 
-    // backgroundColor: 'lightblue',
-
-    justifyContent: 'center',
+    display: 'flex',
+    minHeight: 367,
+    justifyContent: 'flex-start',
     alignItems: 'center',
 
     alignItems: 'center',
   },
   bottom_box1: {
-    // backgroundColor: 'grey',
+    //  backgroundColor: 'grey',
 
-    flex: 3,
+    // flex: 1,
 
-    width: '85%',
+    // width: '100%',
 
-    // justifyContent: 'center',
+    // // justifyContent: 'center',
     alignItems: 'center',
   },
   bottom_box1_1: {
     // border:"black",
-
+    margin: 5,
+    // padding: 0,
     flexDirection: 'row',
     width: '85%',
-    //   //  backgroundColor:"pink",
-    marginTop: 20,
+    // backgroundColor: 'pink',
+    // marginTop: 0,
     //   elevation: 4,
     //   // borderWidth: 2, // border width
     //   // borderColor: 'black', // border color
@@ -143,9 +135,9 @@ export const mystyles = StyleSheet.create({
   // },
   input_btn: {
     backgroundColor: '#FFA31A',
-    width: '85%',
+    width: 'auto',
     borderRadius: 5.02,
-    marginTop: '15%',
+    marginTop: '10%',
     paddingVertical: 10,
     paddingHorizontal: 20,
 
@@ -161,4 +153,84 @@ export const mystyles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  bottom_buttonText2: {
+    color: '#858585',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+
+  bottom_touch: {
+    marginTop: '5%',
+    width: '85%',
+  },
+
+  bottom_text_view: {
+    marginTop: '10%',
+    flexDirection: 'row',
+
+    alignItems: 'center',
+  },
+
+  bottom_input_wrapper: {
+    width: '100%',
+    height: 140,
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+
+  // loading spinner container
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 0.6,
+    backgroundColor: 'black',
+  },
+  loadingContainer: {
+    width: 132,
+    height: 132,
+    overflow: 'hidden',
+    backgroundColor: 'transparent', // You can set a background color if needed
+  },
+  ellipsisContainer: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    transform: [{translate: [95.04, 50.160000000000004]}, {scale: 1}],
+    backfaceVisibility: 'hidden',
+    transformOrigin: '0 0',
+  },
+  ellipsisDot: {
+    position: 'absolute',
+    width: 31.68,
+    height: 31.68,
+    borderRadius: 50,
+    backgroundColor: '#bcb1b1',
+  },
+  dot1: {
+    backgroundColor: '#000000',
+    transform: [{translate: [95.04, 50.160000000000004]}, {scale: 1}],
+  },
+  dot2: {
+    backgroundColor: '#bcb1b1',
+    transform: [{translate: [5.28, 50.160000000000004]}, {scale: 1}],
+  },
+  dot3: {
+    backgroundColor: '#000000',
+    transform: [{translate: [50.160000000000004, 95.04]}, {scale: 1}],
+  },
+  dot4: {
+    backgroundColor: '#bcb1b1',
+    transform: [{translate: [50.160000000000004, 5.28]}, {scale: 1}],
+  },
+  dot5: {
+    backgroundColor: '#000000',
+    transform: [{translate: [95.04, 50.160000000000004]}, {scale: 1}],
+  },
 });
+
+
+
+export default styles
