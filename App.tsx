@@ -20,12 +20,12 @@ const theme = createTheme({
     primary: 'grey3',
   },
 });
-import { NativeBaseProvider, Text, Box } from "native-base";
+//np import { NativeBaseProvider, Text, Box } from "native-base";S
 
 export default function App() {
   return (        
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login">
+        <Stack.Navigator initialRouteName="home">
           <Stack.Screen name="login" component={login} />
           <Stack.Screen name="home" component={home} />
         </Stack.Navigator>
