@@ -2,29 +2,29 @@ import axios from "axios";
 import useAsyncStorage from "./useAsyncStorage";
 import base_url from "../utils/Baseurl";
 
-const useAPI = async (reqInstance, endpoint, method, headers, body = null, params = null) => {
-  const tokens = await useAsyncStorage('get', 'tokens');
-  headers['Authorization'] = `Bearer ${tokens.access}`;  
+const useAPI = async (tokens, endpoint, method, headers, body = null, params = null) => {
+ 
+  headers['Authorization'] = `Bearer ${tokens?.access}`;  
   
   try {
-    const response = await makeRequest(reqInstance, endpoint, method, headers, body, params);
+    const response = await makeRequest(tokens, endpoint, method, headers, body, params);
     return { error: false, response };
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const result = await expireToken(tokens.refresh);
       await useAsyncStorage('set', 'tokens', result);
-      return useAPI(reqInstance, endpoint, method, headers, body, params);
+      return useAPI(tokens, endpoint, method, headers, body, params);
     } else {
       return { error: true, errorMessage: error.message || 'Unknown error' };
     }
   }
 };
 
-const makeRequest = async (reqInstance, endpoint, method, headers, body, params) => {
+const makeRequest = async (tokens, endpoint, method, headers, body, params) => {
   if (method === 'get') {
-    return await reqInstance.get(`${base_url}${endpoint}`, { headers, params });
+    return await axios.get(`${base_url}${endpoint}`, { headers, params });
   } else if (method === 'post') {
-    return await reqInstance.post(`${base_url}${endpoint}`, body, { headers });
+    return await axios.post(`${base_url}${endpoint}`, body, { headers });
   } else {
     throw new Error('Invalid HTTP method');
   }

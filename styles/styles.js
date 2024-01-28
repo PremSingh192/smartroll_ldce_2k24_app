@@ -4,76 +4,39 @@ import {Platform, useColorScheme} from 'react-native';
 
 import React from 'react';
 
-
-
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   font_global: {
     fontFamily: 'Poppins-Regular',
   },
+
+  // top level componenet warpper
   wrapper: {
     flex: 1,
 
-    //backgroundColor: '#FFFFFF',
-     backgroundColor: 'black',
+    backgroundColor: 'black',
   },
+
+  // login css
+  // top level upper view
   top_container: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flex: 1,
-    
-    marginTop: 0,
-    height: 400,
-  },
-  top_container_box1: {
-    flex: 1,
-    marginTop: '10%',
-    //  width:"auto",
-    //  height:"auto",
-    flexDirection: 'row',
-    justifyContent: 'center',
-
-    //  backgroundColor: 'blue',
-  },
-  text_top1: {
-    paddingRight: '5%',
-    fontSize: 21,
-    //backgroundColor:'grey',
-  },
-  text_top2: {
-    fontSize: 21,
-    // backgroundColor:'blue',
-  },
-  top_container_box2: {
-    flex: 1,
-
-    //  width:"auto",
-    //  height:"auto",
-    paddingHorizontal: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
-    //  backgroundColor: 'pink',
+    flex: 1,
+    // backgroundColor:"orange",
   },
-  top_image_container: {
-    // paddingHorizontal: 'auto',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor: 'grey',
-  },
+  // login top logo image css
   image: {
-    width: 300,
-    height: 300,
-   
+    width: 200,
+    height: 100,
+    // backgroundColor:"orange",
     resizeMode: 'center',
   },
 
+  // login top level bottom view css
   bottom_container: {
-     flex: 1,
-
-    display: 'flex',
-    minHeight: 367,
+    flex: 1,
+    // backgroundColor: 'blue',
     justifyContent: 'flex-start',
-    alignItems: 'center',
-
     alignItems: 'center',
   },
   bottom_box1: {
@@ -88,10 +51,10 @@ import React from 'react';
   },
   bottom_box1_1: {
     // border:"black",
-    margin: 5,
+    margin: 7,
     // padding: 0,
-    flexDirection: 'row',
     width: '85%',
+    flexDirection: 'row',
     // backgroundColor: 'pink',
     // marginTop: 0,
     //   elevation: 4,
@@ -135,7 +98,7 @@ import React from 'react';
   // },
   input_btn: {
     backgroundColor: '#FFA31A',
-    width: 'auto',
+    width: '85%',
     borderRadius: 5.02,
     marginTop: '10%',
     paddingVertical: 10,
@@ -167,16 +130,14 @@ import React from 'react';
   bottom_text_view: {
     marginTop: '10%',
     flexDirection: 'row',
-
     alignItems: 'center',
   },
 
   bottom_input_wrapper: {
     width: '100%',
-    height: 140,
-
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
@@ -231,6 +192,4 @@ import React from 'react';
   },
 });
 
-
-
-export default styles
+export default styles;
