@@ -15,6 +15,7 @@ function LoginInput(props) {
       </View>
       {/* <Image source={props.logo_img} style={props.styledClass[0]} /> */}
 
+
       <TextInput
         keyboardType={props.keyboardType}
         value={props.value}

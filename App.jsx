@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='home'>
+      <Stack.Navigator initialRouteName='login'>
         <Stack.Screen name="home">
           {props => (
             <Router>

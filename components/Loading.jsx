@@ -1,33 +1,14 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {
-  ActivityIndicator,
-  StyleSheet,
+import React, {useState, useRef} from 'react';
+import {  
   View,
-  Modal,
-  Button,
-  Text,
-  Image,
+  StyleSheet,
+  Modal
 } from 'react-native';
-import loadinggif from '../assets/loading.gif';
-import Svg, {Circle} from 'react-native-svg';
-import {Spinner_Svg, Email_Svg} from './login/GlobalSvg/SvgStore';
-import SvgCall from './login/GlobalSvg/SvgCall';
 import styles from '../styles/styles';
-import RNAnimatedGif from 'react-native-gif';
+import LottieView from "lottie-react-native";
 
-import {WebView} from 'react-native-webview';
-export default function Loading({visible}) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const circleRef = useRef();
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  return (
+export default function Loading({visible}) {  
+  return (    
     <View style={styles.container}>
       <Modal transparent={true} animationType="fade" visible={visible}>
         <View style={styles.container}>
@@ -38,12 +19,21 @@ export default function Loading({visible}) {
               height: 100,
               justifyContent: 'center',
               alignItems: 'center',
-            
             }}>
-          <ActivityIndicator size ={"large"} color={"white"}></ActivityIndicator>
+            <LottieView
+                source={require("../assets/lottie/Animation - 1706605632590.json")}
+                style={LottieStyles.animation}
+                autoPlay
+            />
           </View>
         </View>
       </Modal>
     </View>
   );
 }
+const LottieStyles = StyleSheet.create({
+  animation: {
+    width: 100,
+    height: 100,
+  },
+});
