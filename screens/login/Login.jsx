@@ -29,18 +29,13 @@ export default function Login({navigation}) {
   const [loginstate, setloginstate] = useState({
     Email: '',
     Pass: '',
-  });
-  const [disable, setdisable] = useState(() => false);
-  console.log(loginstate);
+  });    
   const dispatch = useDispatch();
-
+  const [loader,showLoader] = useState(false)
   function submitlogin() {
+    showLoader(true)
     const {Email, Pass} = loginstate;
-
-    if (Email && Pass) {
-      console.log(Email, Pass);
-      setdisable(prev => !prev);
-      console.log(disable);
+    if (Email && Pass) {      
       const body = {
         email: Email,
         password: Pass,
@@ -55,18 +50,14 @@ export default function Login({navigation}) {
         .then(response => {
           let data = response.data;
           if (data.access && data.refresh) {
-            if (data.access && data.refresh) {
-              console.log(data.access);
-              // setdisable(prev => data);
+            if (data.access && data.refresh) {              
               dispatch(login(data));
               navigation.replace('home');
             }
           }
         })
-        .catch(error => {
-          setdisable(prev => !prev);
-          if (error.response.data.status === 401) {
-            console.log(disable);
+        .catch(error => {          
+          if (error.response.data.status === 401) {            
             Alert.alert('error ', `${error.response.data.detail}`);
           }
         });
@@ -78,7 +69,7 @@ export default function Login({navigation}) {
   return (
     // wrapper body
     <ComponentWrapper>
-      {disable && <Loading visible={disable} />}
+      <Loading visible={loader} />
       <View style={styles.top_container}>
         <Image source={logo} style={styles.image} />
         <SvgCall logo_code={Login_logo}></SvgCall>
@@ -115,8 +106,7 @@ export default function Login({navigation}) {
           />
 
           <InputButton
-            handleButtonPress={submitlogin}
-            disabled={disable}
+            handleButtonPress={submitlogin}            
             style={[styles.input_btn, styles.bottom_buttonText]}
             placeholder={'Login'}
           />

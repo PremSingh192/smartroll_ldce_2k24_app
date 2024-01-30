@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    opacity: 0.6,
+    opacity: 0.7,
     backgroundColor: 'black',
   },
   loadingContainer: {
