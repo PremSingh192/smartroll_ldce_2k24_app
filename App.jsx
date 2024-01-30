@@ -6,6 +6,8 @@ import Home from './screens/home/Home';
 import {useSelector} from 'react-redux';
 import useAPI from './hooks/useAPI';
 import Router from './components/Router';
+import { decode  } from 'base-64';
+global.atob = decode;
 export default function App() {
   const Stack = createStackNavigator();
 

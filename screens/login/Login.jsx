@@ -1,29 +1,25 @@
 // Import necessary components and libraries
 import React, {useState, useRef} from 'react';
 import {useDispatch} from 'react-redux';
-
 import logo from '../../assets/images/login-logo.png';
 import base_url from '../../utils/Baseurl';
 import axios from 'axios';
 import {login} from '../../redux/LoginReducer';
-
 import {Image, View} from 'react-native';
-
 import styles from '../../styles/styles';
 import LoginInput from '../../components/login/LoginInput';
 import InputButton from '../../components/login/InputButton';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-notification';
-
 import {  
   Email_Svg,
   Pass_Svg,
   Login_logo,  
+
 } from '../../components/login/GlobalSvg/SvgStore';
 import SvgCall from '../../components/login/GlobalSvg/SvgCall';
 import ComponentWrapper from '../../components/ComponentWrapper';
 import {Alert} from 'react-native';
 import Loading from '../../components/Loading';
-
 export default function Login({navigation}) {
   
   const [email,setEmail] = useState(null)  
@@ -31,7 +27,6 @@ export default function Login({navigation}) {
   const [formSubmited,setFormSubmitted] = useState(false)
   
   const dispatch = useDispatch();
-
   function submitlogin() {
     setFormSubmitted(true)
     if (email && password) {      
@@ -62,12 +57,13 @@ export default function Login({navigation}) {
         }
       })
     } else {
-      Alert.alert('Input Field Empty', 'please enter email and password');
+      Alert.alert('Empty input', 'Enter Email and Password');
     }
   }
 
   return (
     // wrapper body
+
     <ComponentWrapper>
     <AlertNotificationRoot>
       <Loading visible={formSubmited} />
@@ -75,7 +71,6 @@ export default function Login({navigation}) {
         <Image source={logo} style={styles.image} />
         <SvgCall logo_code={Login_logo}></SvgCall>
       </View>
-
       <View style={styles.bottom_container}>
         <View style={styles.bottom_input_wrapper}>
           <LoginInput
