@@ -14,10 +14,9 @@ const   Router = ({children}) => {
   const [authenticated,setAuthenticated] = useState(false)
   if(token){
     useAPI(
-      token, '/auth/api/check_token_authenticity', 'get', {},).then(res => {
+      token, '/auth/api/check_token_authenticity', 'get', {},).then(res => {        
         setAuthenticated(true)
-      }).catch(err => {
-        console.log(err);        
+      }).catch(err => {        
         navigation.replace('login')
       })
   }    
