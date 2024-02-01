@@ -27,7 +27,6 @@ export default function Login({navigation}) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [formSubmited, setFormSubmitted] = useState(false);
-
   const dispatch = useDispatch();
   function submitlogin() {
     setFormSubmitted(true);

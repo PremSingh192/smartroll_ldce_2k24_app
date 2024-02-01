@@ -1,6 +1,6 @@
 // CustomAuthComponent.js
 
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {StyleSheet, View} from 'react-native';
@@ -10,49 +10,26 @@ import useAPI from '../hooks/useAPI';
 const Router = ({children}) => {
   const navigation = useNavigation();
   const token = useSelector(state => state.isLoggedIn.token);
-  const [isLoading, setIsLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+
   useEffect(() => {
-    const checkAuthentication = async () => {
-      try {
-        if (token) {
-          const res = await useAPI(
-            token,
-            '/auth/api/check_token_authenticity',
-            'get',
-            {},
-          ); // Your API authentication function
-          if (res.response.data.data != true) {
-            console.log('invalid token')
-            setIsLoading(false);
-            navigation.replace('login'); // Redirect to Home screen if not authenticated
-          }
-        } else {
-          setIsLoading(false);
-          console.log('no token');
-          navigation.replace('login');
-        }
-      } catch (error) {
-        setIsLoading(false);
-        console.error('Error checking authentication:', error);
-        navigation.replace('login');
-        // Handle error
-      } finally {
-        setIsLoading(false);
+    try {
+      if (token) {
+        useAPI(token, '/auth/api/check_token_authenticity', 'get', {})
+          .then(res => {
+            setAuthenticated(true);
+          })
+          .catch(err => {
+            navigation.replace('login');
+          });
+      } else {
+        throw 'No token';
       }
-    };
-
-    checkAuthentication();
+    } catch (error) {
+      navigation.replace('login');
+    }
   }, []);
-
-  if (isLoading) {
-    return (
-      <View>
-        <Loading visible={isLoading} />
-      </View>
-    );
-  }
-
-  return <>{children}</>;
+  return authenticated ? <>{children}</> : <Loading />;
 };
 
 export default Router;

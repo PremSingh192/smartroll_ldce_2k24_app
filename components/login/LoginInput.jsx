@@ -7,7 +7,6 @@ import {hide_pass,show_pass} from './GlobalSvg/SvgStore';
 function LoginInput(props) {
   const eyesvg = props.inputType == 'password' ? true : false;
   const [changetype, setchangetype] = useState(true);
-  console.log('eyesvg', eyesvg);
   return (
     <View style={styles.bottom_box1_1}>
       <View style={styles.image_icon}>
