@@ -3,11 +3,21 @@ import {View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import styles from '../../styles/styles';
 import React, {useState, useEffect} from 'react';
-
-
+import axios from 'axios';
+import useAPI from '../../hooks/temphook';
 import {jwtDecode} from 'jwt-decode';
-
+import { headers } from '../../utils/Baseurl';
 const Home = ({navigation}) => {
+
+  const [StoredTokens,CallAPI]= useAPI();
+  
+  useEffect(()=>{
+    const axiosInstance = axios.create()
+// console.log("from hook",StoredTokens)
+CallAPI(StoredTokens,axiosInstance, `/manage/get_object_counts`,'get',headers).then(responseObj => {
+  console.log("from call api",responseObj.response.data);
+})
+  },[])
   const access = useSelector(state => state.isLoggedIn.token?.access);
   let user;
   if (access) {

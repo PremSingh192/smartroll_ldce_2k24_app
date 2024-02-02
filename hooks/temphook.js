@@ -1,35 +1,28 @@
 import axios from "axios";
-import { base_url } from "@/base_url";
+import base_url from "../utils/Baseurl";
 import { useSelector,useDispatch } from "react-redux";
-import { set_Token } from "@/action";
-import { useNavigate } from "react-router-dom";
-
+import { login,logout } from "../redux/LoginReducer";
+import { useNavigation } from "@react-navigation/native";
 const useAPI = () => {  
-  const navigate = useNavigate()
+  const navigate = useNavigation()
   const dispatch  = useDispatch()
-  const StoredTokens = useSelector((state) => state.userTokenAccess.Token)
+  const StoredTokens = useSelector(state => state.isLoggedIn.token)
   const CallAPI = async (tokens=StoredTokens,reqInstance, endpoint, method, headers, body = null, params = null) => {
-    headers['Authorization'] = `Bearer ${tokens.accessToken}`;
+    headers['Authorization'] = `Bearer ${tokens.access}`;
     try {
       const response = await makeRequest(reqInstance, endpoint, method, headers, body, params);
       return { error: false, response };
     } catch (error) {            
         if (error.response && error.response.status === 401) {
-          const result = await expireToken(tokens.refreshToken);          
+          const result = await expireToken(tokens.refresh);          
           if(result.access && result.refresh){
-            const token_data = {
-              "accessToken" : result.access,
-              "refreshToken": result.refresh
-            }
-            localStorage.setItem('accessToken',result.access)
-            localStorage.setItem('refreshToken',result.refresh)
-            dispatch(set_Token(token_data))
-            return CallAPI(token_data, reqInstance, endpoint, method, headers, body, params);
+
+            dispatch(login(result))
+            return CallAPI(result, reqInstance, endpoint, method, headers, body, params);
           }
           if(result.action == 'tokenExpired' && result.status === 401){
-            localStorage.removeItem('accessToken')
-            localStorage.removeItem('refreshToken')
-            navigate('/auth/sign-in/')
+            dispatch(logout())
+            navigate.replace("login")
             return { error: true, result };
           }
         } else {
